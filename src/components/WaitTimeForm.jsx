@@ -104,7 +104,8 @@ function WaitTimeForm() {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:3000/predict', {
+            const response = await fetch('https://btp-project2-backend-1.onrender.com/predict', { //for hosting
+            // const response = await fetch('http://localhost:3000/predict', { //for local
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
