@@ -1,14 +1,23 @@
 // src/components/Navbar.js
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
-import '../styles/navbar.css'; // Import the CSS file for custom styling
+import { WbSunny, DarkMode } from '@mui/icons-material'; // Import Sun and Moon icons
+import '../styles/navbar.css';
 
 const Navbar = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    // Additional logic can be added here if you want to toggle dark mode styles
+  };
+
   return (
     <AppBar position="static" className="navbar">
       <Toolbar className="navbar-toolbar">
@@ -21,7 +30,7 @@ const Navbar = () => {
               color: 'inherit' // Ensures the text color matches the AppBar color
             }}
           >
-            wating time predictor
+            Waiting Time Predictor
           </Link>
         </Typography>
 
@@ -30,7 +39,14 @@ const Navbar = () => {
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/contact">Contact</Button>
           <Button color="inherit" component={Link} to="/about">About</Button>
-          <Button color="inherit" component={Link} to="/predict">predict</Button>
+          <Button color="inherit" component={Link} to="/predict">Predict</Button>
+        </Box>
+
+        {/* Toggle Button (Sun/Moon Icon) at the Right */}
+        <Box className="navbar-toggle">
+          <IconButton onClick={handleToggle} color="inherit">
+            {isDarkMode ? <WbSunny /> : <DarkMode />}
+          </IconButton>
         </Box>
       </Toolbar>
     </AppBar>
