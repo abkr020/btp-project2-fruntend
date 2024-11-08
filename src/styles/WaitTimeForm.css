@@ -9,6 +9,7 @@
     max-width: 500px;
     margin: 20px auto;
     background-color: white; /* Ensure background is white */
+    border-radius: 15px;
 }
 
 /* Form Styles */
