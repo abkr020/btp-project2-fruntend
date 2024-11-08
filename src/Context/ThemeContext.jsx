@@ -1,11 +1,12 @@
-import React, { createContext, useState, useMemo } from 'react';
+import React, { createContext, useState, useMemo, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // Create a context for theme
 export const ThemeContext = createContext();
 
-const ThemeContextProvider = ({ children = null }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false); // Default light mode
+const ThemeContextProvider = ({ children }) => {
+  // Set initial dark mode to true
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Define light and dark themes
   const theme = useMemo(
@@ -33,12 +34,17 @@ const ThemeContextProvider = ({ children = null }) => {
     [isDarkMode]
   );
 
+  // Set initial theme to dark mode when the component mounts
+  useEffect(() => {
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]); // Run this effect when `isDarkMode` changes
+
   // Toggle function for dark/light mode
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+    setIsDarkMode((prevMode) => !prevMode);
+    // Update the theme on toggle
+    document.body.setAttribute('data-theme', !isDarkMode ? 'dark' : 'light');
   };
-  
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
