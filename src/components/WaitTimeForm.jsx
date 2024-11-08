@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, CircularProgress } from '@mui/material';
+import { TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
+import '../styles/WaitTimeForm.css'; // Import the CSS file
 
 function WaitTimeForm() {
     const [features, setFeatures] = useState({
@@ -43,17 +44,8 @@ function WaitTimeForm() {
     };
 
     return (
-        <Box 
-            sx={{ 
-                padding: 3, 
-                display: 'flex', 
-                flexDirection: 'column', 
-                alignItems: 'center', 
-                backgroundColor: 'background.default',  // Use theme background color
-                minHeight: '100vh'  // Ensure full screen height for proper visibility
-            }}
-        >
-            <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: 400 }}>
+        <Box className="form-container">
+            <form onSubmit={handleSubmit}>
                 <Typography variant="h5" component="h2" gutterBottom>
                     Predict Wait Time
                 </Typography>
