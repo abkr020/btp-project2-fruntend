@@ -30,3 +30,77 @@
     line-height: 1.6;
   }
   
+  /* Signature button at the bottom-right corner */
+/* Signature button at the bottom-right corner */
+.signature-button {
+  position: fixed;
+  bottom: 30px;          /* Distance from the bottom */
+  right: 30px;           /* Distance from the right */
+  width: 1.5rem;           /* Equal width and height for a circular button */
+  height: 1.5rem;          
+  border-radius: 50%;    /* 50% border-radius makes it a perfect circle */
+  border: 1px solid var(--border-light, #dcdcdc); /* Light border color */
+  background-color: transparent !important; /* Transparent background */
+  color: greenyellow;           /* Dark color for the icon (e.g., ? symbol) */
+  font-size: 1rem;       /* Icon size inside the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out; /* Smooth transition */
+  padding: 0; /* Ensure no padding distorts the shape */
+  opacity: 0;
+  /* pointer-events: none; */
+}
+
+/* Hover effect */
+.signature-button:hover {
+  opacity: 1;            /* Make button visible */
+  pointer-events: auto;
+}
+
+
+
+
+.signature-button:focus {
+  outline: none;
+}
+
+
+
+  
+  
+  
+
+/* Pop-out signature box */
+.signature-popout {
+  /* display: none;       */
+  position: fixed;
+  bottom: 50px;          /* Position above the button */
+  right: 50px;
+  padding: 10px;
+  background-color: darkgray;
+  border: 1px solid #dcdcdc;
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+/* Style for the link */
+.signature-link {
+  color: greenyellow;  /* Yellow color for the link */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  display: block; /* Makes the link block-level for better spacing */
+  text-align: center;
+  padding: 5px 0;
+}
+
+/* Change color on hover */
+.signature-link:hover {
+  color: #ffd700;  /* Lighter yellow when hovered */
+  text-decoration: underline;
+}
+
