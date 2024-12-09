@@ -44,7 +44,8 @@ function WaitTimeForm() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/predict', {
+            const response = await fetch('https://btp-project2-backend-1.onrender.com/predict', {
+            // const response = await fetch('http://localhost:3000/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
