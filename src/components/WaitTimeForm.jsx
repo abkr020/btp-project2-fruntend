@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
+import { TextField, Button, CircularProgress, Typography, Box, FormControlLabel, Checkbox } from '@mui/material';
 import '../styles/WaitTimeForm.css'; // Import the CSS file
 
 function WaitTimeForm() {
@@ -7,27 +7,49 @@ function WaitTimeForm() {
         arrivalTime: '',
         department: '',
         doctorsAvailable: '',
+        consultationRevenue: '',
+        CT_hour: '',
+        ET_hour: '',
+        doctorTypeFloating: false,
+        doctorTypeLocum: false,
+        financialClassHMO: false,
+        financialClassInsurance: false,
+        financialClassMedicare: false,
+        financialClassPrivate: false,
     });
     const [waitTime, setWaitTime] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
         setFeatures({
             ...features,
-            [e.target.name]: e.target.value,
+            [name]: type === 'checkbox' ? checked : value,
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        // Convert boolean values to 0 or 1
+        const transformedFeatures = {
+            ...features,
+            doctorTypeFloating: features.doctorTypeFloating ? 1 : 0,
+            doctorTypeLocum: features.doctorTypeLocum ? 1 : 0,
+            financialClassHMO: features.financialClassHMO ? 1 : 0,
+            financialClassInsurance: features.financialClassInsurance ? 1 : 0,
+            financialClassMedicare: features.financialClassMedicare ? 1 : 0,
+            financialClassPrivate: features.financialClassPrivate ? 1 : 0,
+        };
+
         try {
-            const response = await fetch('https://btp-project2-backend-1.onrender.com/predict', {
+            const response = await fetch('http://localhost:3000/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(features),
+                body: JSON.stringify(transformedFeatures),
             });
 
             if (!response.ok) {
@@ -81,6 +103,110 @@ function WaitTimeForm() {
                     fullWidth
                     required
                     margin="normal"
+                />
+
+                <TextField
+                    label="Consultation Revenue"
+                    variant="outlined"
+                    name="consultationRevenue"
+                    type="number"
+                    value={features.consultationRevenue}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    margin="normal"
+                />
+
+                <TextField
+                    label="Entry Time (ET_hour)"
+                    variant="outlined"
+                    name="ET_hour"
+                    type="number"
+                    value={features.ET_hour}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    margin="normal"
+                />
+                <TextField
+                    label="Completion Time (CT_hour)"
+                    variant="outlined"
+                    name="CT_hour"
+                    type="number"
+                    value={features.CT_hour}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                    margin="normal"
+                />
+
+
+                <Typography variant="h6" mt={2}>
+                    Doctor Types
+                </Typography>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="doctorTypeFloating"
+                            checked={features.doctorTypeFloating}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="Floating Doctor"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="doctorTypeLocum"
+                            checked={features.doctorTypeLocum}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="Locum Doctor"
+                />
+
+                <Typography variant="h6" mt={2}>
+                    Financial Classes
+                </Typography>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="financialClassHMO"
+                            checked={features.financialClassHMO}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="HMO"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="financialClassInsurance"
+                            checked={features.financialClassInsurance}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="Insurance"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="financialClassMedicare"
+                            checked={features.financialClassMedicare}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="Medicare"
+                />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            name="financialClassPrivate"
+                            checked={features.financialClassPrivate}
+                            onChange={handleChange}
+                        />
+                    }
+                    label="Private"
                 />
 
                 <Box display="flex" justifyContent="center" marginTop={2}>
