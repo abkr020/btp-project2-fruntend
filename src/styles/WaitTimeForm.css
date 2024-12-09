@@ -67,11 +67,28 @@ button:disabled {
     font-size: 1.2rem;
     color: #1976d2;
 }
+.doctor-type{
+    color: black;
+}
+.financial-classes{
+    color: black;
+}
 
 /* Ensure visibility for dark mode */
 body[data-theme='dark'] .form-container {
     background-color: #333; /* Dark background for the form */
     color: #fff; /* White text in dark mode */
+}
+body[data-theme='dark'] .doctor-type {
+    /* background-color: #333;  */
+    color: #fff; /* White text in dark mode */
+}
+body[data-theme='dark'] .financial-classes {
+    /* background-color: #333;  */
+    color: #fff; /* White text in dark mode */
+}
+body[data-theme='dark'] .MuiFormControlLabel-label {
+    color: #fff; /* Ensures label visibility */
 }
 
 body[data-theme='dark'] input {
@@ -79,6 +96,9 @@ body[data-theme='dark'] input {
     color: #fff;
 }
 
+body[data-theme='dark'] button {
+    background-color: #0069c0;
+}
 body[data-theme='dark'] button {
     background-color: #0069c0;
 }

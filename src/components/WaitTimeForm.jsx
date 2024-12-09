@@ -72,7 +72,7 @@ function WaitTimeForm() {
                     Predict Wait Time
                 </Typography>
 
-                <TextField
+                {/* <TextField
                     label="Arrival Time"
                     variant="outlined"
                     name="arrivalTime"
@@ -81,9 +81,9 @@ function WaitTimeForm() {
                     fullWidth
                     required
                     margin="normal"
-                />
+                /> */}
 
-                <TextField
+                {/* <TextField
                     label="Department"
                     variant="outlined"
                     name="department"
@@ -92,9 +92,9 @@ function WaitTimeForm() {
                     fullWidth
                     required
                     margin="normal"
-                />
+                /> */}
 
-                <TextField
+                {/* <TextField
                     label="Doctors Available"
                     variant="outlined"
                     name="doctorsAvailable"
@@ -103,7 +103,7 @@ function WaitTimeForm() {
                     fullWidth
                     required
                     margin="normal"
-                />
+                /> */}
 
                 <TextField
                     label="Consultation Revenue"
@@ -141,7 +141,7 @@ function WaitTimeForm() {
                 />
 
 
-                <Typography variant="h6" mt={2}>
+                <Typography className='doctor-type' variant="h6" mt={2}>
                     Doctor Types
                 </Typography>
                 <FormControlLabel
@@ -165,7 +165,7 @@ function WaitTimeForm() {
                     label="Locum Doctor"
                 />
 
-                <Typography variant="h6" mt={2}>
+                <Typography className='financial-classes' variant="h6" mt={2}>
                     Financial Classes
                 </Typography>
                 <FormControlLabel
